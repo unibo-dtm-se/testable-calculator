@@ -15,6 +15,20 @@
             "type": "debugpy",
             "request": "launch",
             "module": "calculator.ui.cli"
+        },
+        {
+            "name": "Run All Tests",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "unittest",
+            "args": [
+                "discover",
+                "-s",
+                "tests/",
+                "-p",
+                "test_*.py",
+                "-v"
+            ],
         }
     ]
 }
