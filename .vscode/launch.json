@@ -29,6 +29,20 @@
                 "test_*.py",
                 "-v"
             ],
+        },
+        {
+            "name": "Run GUI Tests",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "unittest",
+            "args": [
+                "discover",
+                "-s",
+                "tests/",
+                "-p",
+                "test_gui.py",
+                "-v"
+            ],
         }
     ]
 }
