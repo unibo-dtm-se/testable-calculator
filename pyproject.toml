@@ -12,6 +12,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 Kivy = "^2.3.0"
+coverage = "^7.4.3"
 
 [tool.poetry.group.dev.dependencies]
 poetry = "^1.7.1"

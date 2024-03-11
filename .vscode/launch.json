@@ -43,6 +43,32 @@
                 "test_gui.py",
                 "-v"
             ],
-        }
+        },
+        {
+            "name": "Compute Test-Coverage",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "coverage",
+            "args": [
+                "run",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests/",
+                "-p",
+                "test_*.py",
+                "-v"
+            ],
+        },
+        {
+            "name": "Test-Coverage Report",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "coverage",
+            "args": [
+                "report"
+            ],
+        },
     ]
 }
