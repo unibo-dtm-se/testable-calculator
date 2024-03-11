@@ -2,13 +2,39 @@ import unittest
 from calculator.ui.gui import CalculatorApp
 
 
-class TestCalculatorGui(unittest.TestCase):
+class CalculatorGUITestCase(unittest.TestCase):
     def setUp(self):
         self.app = CalculatorApp()
         self.app._run_prepare()
 
-    def test_composing_expression(self):
-        self.app.button("1").trigger_action()
-        self.app.button("+").trigger_action()
-        self.app.button("2").trigger_action()
-        self.app.display.text = "1+2"
+    def press_button(self, name):
+        self.app.button(name).trigger_action()
+
+    def assert_display(self, value):
+        self.assertEqual(self.app.display.text, value)   
+
+    def tearDown(self):
+        self.app.stop()
+    
+
+class TestExpressions(CalculatorGUITestCase):
+    def test_integer_expression(self):
+        self.press_button("1")
+        self.press_button("+")
+        self.press_button("2")
+        self.assert_display("1+2")
+        self.press_button("=")
+        self.assert_display("3")
+
+    def test_float_expression(self):
+        self.press_button("1")
+        self.press_button(".")
+        self.press_button("2")
+        self.press_button("+")
+        self.press_button("2")
+        self.assert_display("1.2+2")
+        self.press_button("=")
+        self.assert_display("3.2")
+
+
+del CalculatorGUITestCase
