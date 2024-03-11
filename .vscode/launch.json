@@ -70,5 +70,15 @@
                 "report"
             ],
         },
+        {
+            "name": "Compile All .py Files",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "compileall",
+            "args": [
+                "calculator",
+                "tests"
+            ],
+        },
     ]
 }
