@@ -1,6 +1,6 @@
 import io
 import unittest
-from calculator.ui.cli import main
+from calculator.ui.cli import CalculatorCLI
 
 
 class TestCalculatorCli(unittest.TestCase):
@@ -8,13 +8,13 @@ class TestCalculatorCli(unittest.TestCase):
         self.output = io.StringIO()
 
     def test_cli_with_sliced_expression(self):
-        main(["1", "+", "2"], output=self.output)
+        CalculatorCLI(["1", "+", "2"], channel=self.output).run()
         self.assertEqual("3\n", self.output.getvalue())
 
     def test_cli_with_invalid_expression(self):
-        main(["1", "+"], output=self.output)
+        CalculatorCLI(["1", "+"], channel=self.output).run()
         self.assertEqual("Invalid expression: 1 +\n", self.output.getvalue())
 
     def test_cli_with_single_expression(self):
-        main(["3-2"], output=self.output)
+        CalculatorCLI(["3-2"], channel=self.output).run()
         self.assertEqual("1\n", self.output.getvalue())

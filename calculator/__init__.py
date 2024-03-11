@@ -1,7 +1,4 @@
-from typing import Union
-
-
-Number = Union[int, float]
+Number = int | float
 
 
 class Calculator:
@@ -34,6 +31,12 @@ class Calculator:
     
     def divide(self):
         self._append("/")
+
+    def dot(self):
+        self._append(".")
+
+    def clear(self):
+        self.expression = ""
     
     def compute_result(self) -> Number:
         try:
@@ -43,7 +46,7 @@ class Calculator:
                 return result
             else:
                 raise ValueError("Result is not a number: " + str(result))
-        except SyntaxError as e:
+        except Exception as e:
             expression = self.expression
             self.expression = ""
             raise ValueError("Invalid expression: " + expression) from e
