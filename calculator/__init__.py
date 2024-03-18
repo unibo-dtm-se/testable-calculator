@@ -1,5 +1,10 @@
+import math
+
 Number = int | float
 
+MATH_FUNCTIONS = {
+    "sqrt": math.sqrt,
+}
 
 class Calculator:
 
@@ -37,10 +42,22 @@ class Calculator:
 
     def clear(self):
         self.expression = ""
+
+    def open_parenthesis(self):
+        self._append("(")
+    
+    def close_parenthesis(self):
+        self._append(")")
+    
+    def square_root(self):
+        self._append("sqrt")
+
+    def power(self):
+        self._append("**")
     
     def compute_result(self) -> Number:
         try:
-            result = eval(self.expression)
+            result = eval(self.expression, MATH_FUNCTIONS)
             if isinstance(result, Number):
                 self.expression = str(result)
                 return result
