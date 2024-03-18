@@ -36,3 +36,32 @@ class TestExpressions(CalculatorGUITestCase):
         self.assert_display("1.2+2")
         self.press_button("=")
         self.assert_display("3.2")
+
+    def test_expression_with_parentheses(self):
+        self.press_button("(")
+        self.press_button("1")
+        self.press_button("+")
+        self.press_button("2")
+        self.press_button(")")
+        self.press_button("*")
+        self.press_button("3")
+        self.assert_display("(1+2)*3")
+        self.press_button("=")
+        self.assert_display("9")
+
+    def test_expression_wit_sqrt(self):
+        self.press_button("sqrt")
+        self.press_button("4")
+        self.press_button(")")
+        self.assert_display("sqrt(4)")
+        self.press_button("=")
+        self.assert_display("2.0")
+
+    def test_expression_with_pow(self):
+        self.press_button("2")
+        self.press_button("**")
+        self.press_button("3")
+        self.assert_display("2**3")
+        self.press_button("=")
+        self.assert_display("8")
+    
