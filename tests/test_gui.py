@@ -14,6 +14,9 @@ class CalculatorGUITestCase(unittest.TestCase):
     def assert_display(self, value):
         self.assertEqual(self.app.display.text, value)   
 
+    def assert_button_exists(self, button_text):
+        self.assertIsNotNone(self.app.find_button_by(button_text))
+
     def tearDown(self):
         self.app.stop()
     
@@ -36,3 +39,21 @@ class TestExpressions(CalculatorGUITestCase):
         self.assert_display("1.2+2")
         self.press_button("=")
         self.assert_display("3.2")
+
+
+class TestLayout(CalculatorGUITestCase):
+    buttons_to_test = {
+        'C',
+        '7', '8', '9', '/',
+        '4', '5', '6', '*',
+        '1', '2', '3', '-',
+        '.', '0', '=', '+',
+    }
+
+    def test_initial_display(self):
+        self.assert_display("0")
+
+    def test_buttons(self):
+        for button_text in self.buttons_to_test:
+            with self.subTest(button=button_text):
+                self.assert_button_exists(button_text)
